@@ -1,3 +1,12 @@
 This script uses the Cisco IMC / Redfish REST interface to control virtual media, boot order, and power state.
 The CIMC must be able to reach the ISO file by URL (HTTP/HTTPS) OR you must upload the ISO to an available virtual media location the CIMC supports.
 For unattended installation you’ll need a VMware Kickstart file (ks.cfg) and either: (A) inject it into the ISO (build a custom ISO), (B) host it on HTTP/NFS and pass ks= boot parameter to the ESXi installer
+
+Screipt Does
+Creates a Redfish session with the CIMC.
+Locates the manager and system resource IDs.
+Creates (or updates) a virtual media entry pointing at the ESXi ISO URL and inserts it.
+Sets the system one-time boot to CD/DVD (virtual media) using Redfish Boot override.
+Reboots the system (power-cycle) so it boots into the ESXi installer.
+(Optional) Waits and reports status.
+This focuses on the CIMC / Redfish flow. Networking (PXE) or other vendor-specific APIs are possible but out of scope for this single script.
